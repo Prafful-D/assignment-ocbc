@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -38,7 +39,7 @@ public class UserInfoController {
     }
 
     @PostMapping(value = "/users")
-    public ApplicationResponse users(@RequestBody UserInfoDTO userInfo) {
+    public ApplicationResponse users(@RequestBody @Valid UserInfoDTO userInfo) {
         return new ApplicationResponse<>(usersService.create(userInfo));
     }
 }

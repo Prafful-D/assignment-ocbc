@@ -3,6 +3,7 @@ package com.ocbc.assignment.config;
 import com.ocbc.assignment.dto.ApplicationResponse;
 import com.ocbc.assignment.exception.ApplicationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,9 +25,14 @@ public class ExceptionAdvice {
             ApplicationException exception = (ApplicationException) ex;
             baseResponse.setResponseCode(exception.getErrorCode());
             baseResponse.setMessage(exception.getErrorMessage());
-        } else {
+        } else if (ex instanceof MethodArgumentNotValidException) {
+            MethodArgumentNotValidException exception = (MethodArgumentNotValidException) ex;
             baseResponse.setResponseCode("400");
-            baseResponse.setMessage("Failed");
+            baseResponse.setMessage(exception.getFieldError().getDefaultMessage());
+
+        } else {
+            baseResponse.setResponseCode("500");
+            baseResponse.setMessage("FAILED");
         }
 
         return baseResponse;

@@ -1,5 +1,6 @@
 package com.ocbc.assignment.dto;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.UUID;
 
 /**
@@ -7,8 +8,10 @@ import java.util.UUID;
  */
 public class TopUpDTO {
 
+    @NotEmpty(message = "UserId to TOPUP is required")
     private UUID id;
 
+    @NotEmpty(message = "Amount is required")
     private Double amount;
 
     public UUID getId() {

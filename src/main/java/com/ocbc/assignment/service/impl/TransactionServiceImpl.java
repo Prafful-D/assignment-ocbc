@@ -164,11 +164,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Transactional
     public TransactionResponse extractTransactionResponse(UUID userId) {
 
-        TransactionResponse transactionResponse = null;
-
         Optional<UserInfo> userInfoOptional = usersRepository.findById(userId);
         if (userInfoOptional.isPresent()) {
-            transactionResponse = new TransactionResponse();
+            TransactionResponse transactionResponse = new TransactionResponse();
             UserInfoDTO user = getUserInfoDTO(userInfoOptional.get());
             transactionResponse.setUser(user);
 
@@ -183,9 +181,11 @@ public class TransactionServiceImpl implements TransactionService {
             transactionResponse.setToReceive(pendingToReceiveTransactionDTOS);
 
             transactionResponse.setTransactions(dtos);
+
+            return transactionResponse;
         }
 
-        return transactionResponse;
+        throw new ApplicationException("NOT_FOUND", "No record found for user [[" + userId + "]] ");
     }
 
     private List<PendingTransactionDTO> getPendingTransactionDTOS(List<PendingTransaction> transactions) {

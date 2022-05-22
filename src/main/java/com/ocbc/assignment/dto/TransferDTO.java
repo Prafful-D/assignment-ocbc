@@ -2,6 +2,7 @@ package com.ocbc.assignment.dto;
 
 import org.springframework.lang.NonNull;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.UUID;
 
 /**
@@ -9,12 +10,13 @@ import java.util.UUID;
  */
 public class TransferDTO {
 
-    @NonNull
+    @NotEmpty(message = "Transfer from user id is required")
     private UUID fromUser;
 
-    @NonNull
+    @NotEmpty(message = "Transfer to user id is required")
     private UUID toUser;
 
+    @NotEmpty(message = "Amount cannot be empty")
     private Double amount;
 
     public UUID getToUser() {

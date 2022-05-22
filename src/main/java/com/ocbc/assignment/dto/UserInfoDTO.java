@@ -1,5 +1,8 @@
 package com.ocbc.assignment.dto;
 
+import org.springframework.lang.NonNull;
+
+import javax.validation.constraints.NotEmpty;
 import java.util.UUID;
 
 /**
@@ -9,8 +12,10 @@ public class UserInfoDTO {
 
     private UUID id;
 
+    @NotEmpty(message = "Name cannot be empty")
     private String name;
 
+    @NotEmpty(message = "UserName cannot be empty")
     private String userName;
 
 /*
