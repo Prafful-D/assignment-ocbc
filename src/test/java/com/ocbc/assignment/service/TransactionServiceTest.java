@@ -111,6 +111,18 @@ public class TransactionServiceTest {
         transactionService.transfer(transferDTO);
     }
 
+    @Test(expected = ApplicationException.class)
+    public void testTransferExceptionSameUser() {
+
+        UUID fromId = UUID.randomUUID();
+
+        TransferDTO transferDTO = new TransferDTO();
+        transferDTO.setToUser(fromId);
+        transferDTO.setFromUser(fromId);
+        transferDTO.setAmount(200.0);
+
+        transactionService.transfer(transferDTO);
+    }
     @Test
     public void testTransfer() {
 

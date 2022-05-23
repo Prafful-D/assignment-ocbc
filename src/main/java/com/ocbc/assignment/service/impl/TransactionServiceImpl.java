@@ -56,6 +56,10 @@ public class TransactionServiceImpl implements TransactionService {
 
         LOGGER.info("Starting executing transfer between from [{}]  to [{}]", transferDTO.getFromUser(), transferDTO.getToUser());
 
+        if (transferDTO.getFromUser().equals(transferDTO.getToUser())) {
+            throw new ApplicationException("1002", "Transfer cannot happen to same user [[" + transferDTO.getFromUser() + "]]");
+        }
+
         Optional<UserInfo> fromUserOptional = usersRepository.findById(transferDTO.getFromUser());
         Optional<UserInfo> toUserOptional = usersRepository.findById(transferDTO.getToUser());
 
