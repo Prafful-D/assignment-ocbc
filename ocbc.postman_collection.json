@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "1ac212d4-dbfd-497f-a8aa-823a0ebbeef5",
+		"name": "ocbc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users | create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"PD\",\n    \"userName\": \"PRAFUL\",\n    \"amount\": 200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/assignment/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"assignment",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users | get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}/assignment/users/d52257e2-4baa-4a90-b22e-b698ab3cedb",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"assignment",
+						"users",
+						"d52257e2-4baa-4a90-b22e-b698ab3cedb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transfer | new",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fromUser\": \"c0eda248-a55e-4621-97e5-1e2a9cb656a2\",\n    \"toUser\": \"7ef3b97e-d3ee-456f-87b7-97a6fd0160e8\",\n    \"amount\": 250\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}/assignment/transfer",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"assignment",
+						"transfer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "topup | new",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"c0eda248-a55e-4621-97e5-1e2a9cb656a2\",\n    \"amount\": 1000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}/assignment/topUp",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"assignment",
+						"topUp"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
